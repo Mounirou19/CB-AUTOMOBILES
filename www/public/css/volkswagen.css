@@ -1,0 +1,175 @@
+/* Styles supplémentaires pour le site vitrine Volkswagen */
+
+/* Animation smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hero section améliorée */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0,60,113,0.8) 0%, rgba(30,90,168,0.6) 100%);
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Cards avec effet glassmorphism */
+.car-card {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.car-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,60,113,0.2);
+}
+
+/* Boutons personnalisés */
+.btn-vw-primary {
+    background: linear-gradient(135deg, var(--vw-blue) 0%, var(--vw-light-blue) 100%);
+    border: none;
+    padding: 12px 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-vw-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,60,113,0.3);
+}
+
+/* Navigation sticky */
+.navbar {
+    transition: all 0.3s ease;
+}
+
+/* Sections avec espacement cohérent */
+section {
+    position: relative;
+}
+
+/* Animations d'entrée */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Footer styling */
+.footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.footer .social-links a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.footer .social-links a:hover {
+    background: var(--vw-blue);
+    transform: translateY(-2px);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 500px;
+        text-align: center;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .btn-lg {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Prix styling */
+.text-primary.fw-bold {
+    font-size: 1.2rem;
+    color: var(--vw-blue) !important;
+}
+
+/* Cards uniformes */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Témoignages */
+.fas.fa-star.text-warning {
+    color: #ffc107 !important;
+}
+
+/* Contact cards */
+.card.border-0.shadow-sm {
+    transition: transform 0.3s ease;
+}
+
+.card.border-0.shadow-sm:hover {
+    transform: translateY(-5px);
+}
+
+/* Form styling */
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    padding: 12px 16px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--vw-blue);
+    box-shadow: 0 0 0 0.2rem rgba(0,60,113,0.25);
+}
+
+/* Section titles */
+.section-title {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(135deg, var(--vw-blue) 0%, var(--vw-light-blue) 100%);
+    border-radius: 2px;
+}

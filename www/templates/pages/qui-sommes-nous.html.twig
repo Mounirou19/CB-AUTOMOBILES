@@ -1,0 +1,378 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qui sommes-nous - CB Automobiles{% endblock %}
+
+{% block body %}
+
+<!-- Hero Section -->
+<section class="py-5" style="background: linear-gradient(135deg, rgba(0,60,113,0.9) 0%, rgba(30,90,168,0.8) 100%), url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center;">
+    <div class="container">
+        <div class="row align-items-center text-white">
+            <div class="col-lg-8">
+                <div class="mb-4">
+                    <span class="badge bg-light text-dark fs-6">CB AUTOMOBILES</span>
+                </div>
+                <h1 class="display-4 fw-bold mb-4">Un titre pour présenter le groupe</h1>
+                <p class="lead mb-4">Lorem adipiscing ultrices vitae habitasse tellus dignissim ac lorem tellus fermentum at lorem tellus dignissim accumsan vel ultrices elit.</p>
+                <p>Commodo torquent elit quis mollit nibh commodo semper sed tellus mauris et lobortis augue eros placerat commodo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Brands Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for brand in brands %}
+            <div class="col-lg-2 col-md-3 col-4 text-center mb-4">
+                <div class="bg-white rounded shadow-sm p-3 h-100 d-flex align-items-center justify-content-center">
+                    <div>
+                        <i class="fas fa-car fa-3x text-muted mb-2"></i>
+                        <h6 class="mb-0">{{ brand.name }}</h6>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="text-center h-100">
+                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <h4>Une équipe qualifiée</h4>
+                    <p class="text-muted">Commodo hendrerit quis diam, oreum assata dignta lorem lectus dignissim duis srat accusam lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="text-center h-100">
+                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-home fa-2x"></i>
+                    </div>
+                    <h4>Un groupe familial</h4>
+                    <p class="text-muted">Lorem adipiscing ultrices vitae habitasse tellus dignissim accumsan vel lorem fermentum ac lorem tellus bibendum blanch dian.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="text-center h-100">
+                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-award fa-2x"></i>
+                    </div>
+                    <h4>Un service haut de gamme</h4>
+                    <p class="text-muted">Bibendum blanch diam lorem commodo hendrerit quis diam oreum duis srat lorem ipsum dolor hendrerit quis dignissim.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 g-4">
+            <div class="col-lg-4">
+                <div class="text-center h-100">
+                    <div class="bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-handshake fa-2x"></i>
+                    </div>
+                    <h4>S'adresse à des projets des particuliers</h4>
+                    <p class="text-muted">Bibendum blanch diam lorem commodo hendrerit quis diam oreum commodo torquent elit quis mollit nibh vitae habitasse tellus dignissim lorem ipsum tellus fermentum at lorem tellus elit.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="text-center h-100">
+                    <div class="bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-truck fa-2x"></i>
+                    </div>
+                    <h4>Livraison & restitution</h4>
+                    <p class="text-muted">Commodo hendrerit quis diam, oreum dignissim duis strat lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod vitae habitasse tellus elit quis mollit nibh commodo.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="text-center h-100">
+                    <div class="bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-star fa-2x"></i>
+                    </div>
+                    <h4>Nombre importants</h4>
+                    <p class="text-muted">Lorem adipiscing ultrices vitae habitasse tellus dignissim accumsan vel ultrices ollicitu mauris pellentesque et lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6">
+                <h2 class="section-title mb-4">Une équipe</h2>
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada faucibus ex nec ultricies. Donec mattis egestas nisi non pretium. Suspendisse nec eros ut erat facilisis maximus. In congue et leo in varius. Vestibulum sit amet felis ornare, commodo orci ut, feugiat lorem.</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    {% for member in team %}
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm">
+                            <img src="{{ member.image }}" class="card-img-top" alt="{{ member.name }}" style="height: 200px; object-fit: cover;">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">{{ member.name }}</h6>
+                                <p class="text-muted small">{{ member.role }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Leadership Section -->
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="img-fluid rounded shadow" alt="Directrice" style="height: 400px; width: 100%; object-fit: cover;">
+            </div>
+            <div class="col-lg-6">
+                <div class="ps-lg-4">
+                    <h3>Une dirigeante</h3>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada faucibus ex nec ultricies. Donec mattis egestas nisi non pretium. Suspendisse nec eros ut erat facilisis maximus. In congue et leo in varius. Vestibulum sit amet felis ornare, commodo orci ut, feugiat lorem. Sed et tempus est. Vivamus eget blandit est. Vestibulum vitae maximus sapien quis pharetra dolor. Sed accumsan sed mi commodo cursus.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Locations Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Nos concessions</h2>
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1562141961-aeec36ca9c39?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             class="card-img-top" alt="Concession" style="height: 200px; object-fit: cover;">
+                        <div class="position-absolute top-0 start-0 m-3">
+                            <span class="badge bg-primary">Saint Maximin Automobiles</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center mb-3">
+                            <div class="col">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-car me-2"></i>
+                                    <span class="fw-bold">SEAT</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text small text-muted">Lorem ipsum et pendant christique digita carpentesior lorem julia dignis. Gran rut fonte preteuent slidesis buttlois durco mental. Coninet molenia ellio dunc per comentuo nei ruta inill alilat lorem.</p>
+                        
+                        <div class="text-end">
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                Lire vers la page de la concession <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             class="card-img-top" alt="Concession" style="height: 200px; object-fit: cover;">
+                        <div class="position-absolute top-0 start-0 m-3">
+                            <span class="badge bg-primary">Espace Saint Maximin</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center mb-3">
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-car me-2"></i>
+                                    <span class="fw-bold">Peugeot</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-car me-2"></i>
+                                    <span class="fw-bold">Volkswagen</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text small text-muted">Peugeot: La cette française Smnt-Maximin de dignitas libeum ut sunt. At nec quloore ceriatuat Contextuel uil duont el cruductum decus, recognizant consectetur duis hircinuis disum djin.</p>
+                        
+                        <div class="text-end">
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                Lire vers la page de la concession <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                             class="card-img-top" alt="Concession" style="height: 200px; object-fit: cover;">
+                        <div class="position-absolute top-0 start-0 m-3">
+                            <span class="badge bg-danger">Apogée Motors</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center mb-3">
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-motorcycle me-2"></i>
+                                    <span class="fw-bold">Ducati</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-motorcycle me-2"></i>
+                                    <span class="fw-bold">Honda</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text small text-muted">Antonella guicenet et vel thum vitae tegalibus fortbleu vinst haudrure, molestiaie in Lorem consequent hit lorem discreti perspiciatu consequzt or constuing intenie executar.</p>
+                        
+                        <div class="text-end">
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                Lire vers la page de la concession <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map and Contact Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="bg-white rounded shadow p-4 h-100">
+                    <h5 class="mb-4">Espace Saint-Maximin</h5>
+                    <div class="mb-4">
+                        <h6>Saint-Maximin Automobiles</h6>
+                        <p class="text-muted mb-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            397 rue de la Mémétocline<br>
+                            83470 Saint Maximin
+                        </p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h6>Apogée Motors</h6>
+                        <p class="text-muted mb-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            194 rue de la Maveroune<br>
+                            83470 St Saint-Maximin Océant
+                        </p>
+                    </div>
+                    
+                    <!-- Brands Grid -->
+                    <div class="mt-4">
+                        <h6 class="mb-3">Marques</h6>
+                        <div class="row g-2 text-center">
+                            <div class="col-4">
+                                <div class="border rounded p-2">
+                                    <i class="fas fa-car text-primary"></i>
+                                    <div class="small mt-1">Audi</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="border rounded p-2">
+                                    <i class="fas fa-car text-primary"></i>
+                                    <div class="small mt-1">Volkswagen</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="border rounded p-2">
+                                    <i class="fas fa-car text-primary"></i>
+                                    <div class="small mt-1">Peugeot</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="border rounded p-2">
+                                    <i class="fas fa-car text-primary"></i>
+                                    <div class="small mt-1">SEAT</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="border rounded p-2">
+                                    <i class="fas fa-motorcycle text-primary"></i>
+                                    <div class="small mt-1">Honda</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="border rounded p-2">
+                                    <i class="fas fa-motorcycle text-primary"></i>
+                                    <div class="small mt-1">Ducati</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="row mt-4 g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <i class="fas fa-users text-primary me-2"></i>
+                                <div>
+                                    <div class="fw-bold small">Accueil</div>
+                                    <div class="text-muted small">Qui sommes-nous ?</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <i class="fas fa-envelope text-primary me-2"></i>
+                                <div>
+                                    <div class="fw-bold small">Contact</div>
+                                    <div class="text-muted small">Nous contacter</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <i class="fas fa-newspaper text-primary me-2"></i>
+                                <div>
+                                    <div class="fw-bold small">Actualités</div>
+                                    <div class="text-muted small">Dernières nouvelles</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <i class="fas fa-gavel text-primary me-2"></i>
+                                <div>
+                                    <div class="fw-bold small">Mentions légales</div>
+                                    <div class="text-muted small">Conditions générales d'utilisation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <!-- Map placeholder -->
+                <div class="bg-secondary rounded h-100 d-flex align-items-center justify-content-center text-white" style="min-height: 400px;">
+                    <div class="text-center">
+                        <i class="fas fa-map fa-3x mb-3"></i>
+                        <h5>Carte interactive</h5>
+                        <p>Nos localisations en Provence</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

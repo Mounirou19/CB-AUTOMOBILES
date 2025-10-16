@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Volkswagen - Votre concessionnaire de confiance{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🚗</text></svg>">
+        
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link href="{{ asset('css/volkswagen.css') }}" rel="stylesheet">
+        
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        <style>
+            :root {
+                --vw-blue: #003c71;
+                --vw-light-blue: #1e5aa8;
+                --vw-gray: #f5f5f5;
+                --vw-dark-gray: #333;
+            }
+            
+            .navbar-brand {
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+            
+            .hero-section {
+                background: linear-gradient(rgba(0,60,113,0.7), rgba(0,60,113,0.7)), url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+                background-size: cover;
+                background-position: center;
+                min-height: 600px;
+                color: white;
+            }
+            
+            .car-card {
+                transition: transform 0.3s ease;
+                border: none;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            
+            .car-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            }
+            
+            .section-title {
+                color: var(--vw-blue);
+                font-weight: bold;
+                margin-bottom: 2rem;
+            }
+            
+            .btn-vw-primary {
+                background-color: var(--vw-blue);
+                border-color: var(--vw-blue);
+                color: white;
+            }
+            
+            .btn-vw-primary:hover {
+                background-color: var(--vw-light-blue);
+                border-color: var(--vw-light-blue);
+                color: white;
+            }
+            
+            .footer {
+                background-color: var(--vw-dark-gray);
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--vw-blue);">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('app_home') }}">
+                    <i class="fas fa-car me-2"></i>Volkswagen
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Véhicules</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ path('app_occasion') }}">Véhicules d'occasion</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_produit') }}">Nos modèles</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#vehicules">Véhicules neufs</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_qui_sommes_nous') }}">Qui sommes-nous</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_article') }}">Actualités</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <button class="btn btn-outline-light me-2">
+                            <i class="fas fa-phone me-1"></i>Nous appeler
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        {% block body %}{% endblock %}
+
+        <!-- Footer -->
+        <footer class="footer py-5 mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <h5><i class="fas fa-car me-2"></i>Volkswagen</h5>
+                        <p class="text-muted">Votre concessionnaire Volkswagen de confiance. Découvrez notre gamme complète de véhicules neufs et d'occasion.</p>
+                        <div class="social-links">
+                            <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6>Véhicules</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-muted text-decoration-none">Véhicules neufs</a></li>
+                            <li><a href="#" class="text-muted text-decoration-none">Occasions</a></li>
+                            <li><a href="#" class="text-muted text-decoration-none">Utilitaires</a></li>
+                            <li><a href="#" class="text-muted text-decoration-none">Électriques</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6>Services</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-muted text-decoration-none">Entretien</a></li>
+                            <li><a href="#" class="text-muted text-decoration-none">Réparation</a></li>
+                            <li><a href="#" class="text-muted text-decoration-none">Pièces détachées</a></li>
+                            <li><a href="#" class="text-muted text-decoration-none">Garantie</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <h6>Contact</h6>
+                        <ul class="list-unstyled text-muted">
+                            <li><i class="fas fa-map-marker-alt me-2"></i>123 Avenue des Automobiles, 75000 Paris</li>
+                            <li><i class="fas fa-phone me-2"></i>01 23 45 67 89</li>
+                            <li><i class="fas fa-envelope me-2"></i>contact@volkswagen-paris.fr</li>
+                            <li><i class="fas fa-clock me-2"></i>Lun-Ven: 8h-19h, Sam: 9h-18h</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="text-muted mb-0">&copy; 2024 Volkswagen Paris. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" class="text-muted text-decoration-none me-3">Mentions légales</a>
+                        <a href="#" class="text-muted text-decoration-none me-3">Confidentialité</a>
+                        <a href="#" class="text-muted text-decoration-none">CGV</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('js/volkswagen.js') }}"></script>
+        
+        {% block javascripts %}
+            {{ encore_entry_link_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </body>
+</html>

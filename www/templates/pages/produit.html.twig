@@ -1,0 +1,356 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ vehicle.name }} - CB Automobiles{% endblock %}
+
+{% block body %}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="py-3" style="background-color: var(--vw-gray);">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{{ path('app_home') }}" class="text-decoration-none">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('app_occasion') }}" class="text-decoration-none">Occasion</a></li>
+            <li class="breadcrumb-item active">{{ vehicle.name }}</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Vehicle Header -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <nav class="mb-2">
+                    <a href="{{ path('app_occasion') }}" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-arrow-left me-2"></i>Retour
+                    </a>
+                </nav>
+                <h1 class="h3 mb-1">{{ vehicle.name }}</h1>
+                <p class="text-muted mb-0">Tout savoir sur notre véhicule</p>
+            </div>
+            <div class="col-lg-6 text-end">
+                <div class="d-flex gap-2 justify-content-end">
+                    <button class="btn btn-outline-secondary">
+                        <i class="far fa-heart me-2"></i>Favoris
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-share me-2"></i>Partager
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <i class="fas fa-print me-2"></i>Imprimer
+                    </button>
+                    <button class="btn btn-outline-secondary">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Vehicle Gallery and Info -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Gallery -->
+            <div class="col-lg-8">
+                <div class="mb-4">
+                    <!-- Main Image -->
+                    <div class="position-relative">
+                        <img src="{{ vehicle.images[0] }}" class="img-fluid rounded shadow" alt="{{ vehicle.name }}" id="mainImage" style="width: 100%; height: 400px; object-fit: cover;">
+                        <div class="position-absolute bottom-0 start-0 m-3">
+                            <span class="badge bg-dark fs-6">{{ vehicle.images|length }} photos</span>
+                        </div>
+                    </div>
+
+                    <!-- Thumbnail Gallery -->
+                    <div class="row g-2 mt-3">
+                        {% for image in vehicle.images %}
+                        <div class="col-3">
+                            <img src="{{ image }}" class="img-fluid rounded shadow-sm thumbnail-image cursor-pointer" 
+                                 style="height: 80px; object-fit: cover; width: 100%;" 
+                                 onclick="changeMainImage('{{ image }}')">
+                        </div>
+                        {% endfor %}
+                        <div class="col-3">
+                            <div class="d-flex align-items-center justify-content-center bg-light rounded" style="height: 80px;">
+                                <i class="fas fa-video fa-2x text-muted"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Details Tabs -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white">
+                        <ul class="nav nav-tabs card-header-tabs" id="vehicleTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="vehicule-tab" data-bs-toggle="tab" data-bs-target="#vehicule" type="button">
+                                    Véhicule
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="equipements-tab" data-bs-toggle="tab" data-bs-target="#equipements" type="button">
+                                    Équipements
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="options-tab" data-bs-toggle="tab" data-bs-target="#options" type="button">
+                                    Options
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="vehicleTabsContent">
+                            <!-- Véhicule Tab -->
+                            <div class="tab-pane fade show active" id="vehicule" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="mb-3">Caractéristiques principales</h5>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2">
+                                                <i class="fas fa-calendar text-primary me-2"></i>
+                                                <strong>Année :</strong> {{ vehicle.year }}
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="fas fa-tachometer-alt text-primary me-2"></i>
+                                                <strong>Kilométrage :</strong> {{ vehicle.mileage|number_format(0, '.', ' ') }} km
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="fas fa-gas-pump text-primary me-2"></i>
+                                                <strong>Carburant :</strong> {{ vehicle.fuel }}
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="fas fa-cogs text-primary me-2"></i>
+                                                <strong>Transmission :</strong> {{ vehicle.transmission }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="mb-3">Description</h5>
+                                        <p>{{ vehicle.description }}</p>
+                                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Équipements Tab -->
+                            <div class="tab-pane fade" id="equipements" role="tabpanel">
+                                <h5 class="mb-3">Équipements de série</h5>
+                                <div class="row">
+                                    {% for equipment in vehicle.equipments %}
+                                    <div class="col-md-6 mb-2">
+                                        <i class="fas fa-check text-success me-2"></i>
+                                        {{ equipment }}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- Options Tab -->
+                            <div class="tab-pane fade" id="options" role="tabpanel">
+                                <h5 class="mb-3">Options disponibles</h5>
+                                <div class="row">
+                                    {% for option in vehicle.options %}
+                                    <div class="col-md-6 mb-2">
+                                        <i class="fas fa-plus text-primary me-2"></i>
+                                        {{ option }}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="position-sticky" style="top: 2rem;">
+                    
+                    <!-- Price Card -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body text-center">
+                            <h3 class="text-primary fw-bold">{{ vehicle.price|number_format(0, '.', ' ') }} €</h3>
+                            <p class="text-muted mb-3">Prix tout compris</p>
+                            
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary btn-lg">
+                                    <i class="fas fa-phone me-2"></i>Nous appeler
+                                </button>
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-calendar me-2"></i>Prendre rendez-vous
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-calculator me-2"></i>Simuler financement
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Info -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h6 class="mb-0">Informations rapides</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center g-3">
+                                <div class="col-6">
+                                    <div class="border rounded p-2">
+                                        <i class="fas fa-calendar fa-2x text-primary mb-2"></i>
+                                        <div class="small"><strong>{{ vehicle.year }}</strong></div>
+                                        <div class="text-muted small">Année</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="border rounded p-2">
+                                        <i class="fas fa-tachometer-alt fa-2x text-primary mb-2"></i>
+                                        <div class="small"><strong>{{ vehicle.mileage|number_format(0, '.', ' ') }}</strong></div>
+                                        <div class="text-muted small">Km</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="border rounded p-2">
+                                        <i class="fas fa-gas-pump fa-2x text-primary mb-2"></i>
+                                        <div class="small"><strong>{{ vehicle.fuel }}</strong></div>
+                                        <div class="text-muted small">Carburant</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="border rounded p-2">
+                                        <i class="fas fa-cogs fa-2x text-primary mb-2"></i>
+                                        <div class="small"><strong>{{ vehicle.transmission }}</strong></div>
+                                        <div class="text-muted small">Transmission</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dealer Info -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <h6 class="mb-3">Votre conseiller</h6>
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                 class="rounded-circle mb-3" width="80" height="80" alt="Conseiller">
+                            <h6>Pierre Martin</h6>
+                            <p class="text-muted small">Conseiller commercial</p>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-phone me-2"></i>01 23 45 67 89
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-envelope me-2"></i>Contacter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form -->
+<section class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <h2>Ce véhicule vous intéresse ?</h2>
+                    <p>Prenez contact dès maintenant</p>
+                </div>
+                
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <form class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Prénom</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Nom</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Adresse mail</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Téléphone</label>
+                                <input type="tel" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Adresse postale</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Ville</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Code postal</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Modèle de véhicule</label>
+                                <input type="text" class="form-control" value="{{ vehicle.name }}" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Date d'achat souhaitée</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" rows="4" placeholder="Votre message..."></textarea>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function changeMainImage(imageSrc) {
+    document.getElementById('mainImage').src = imageSrc;
+    
+    // Update active thumbnail
+    document.querySelectorAll('.thumbnail-image').forEach(thumb => {
+        thumb.classList.remove('border-primary');
+        if (thumb.src === imageSrc) {
+            thumb.classList.add('border-primary');
+        }
+    });
+}
+
+// Set initial active thumbnail
+document.addEventListener('DOMContentLoaded', function() {
+    const firstThumbnail = document.querySelector('.thumbnail-image');
+    if (firstThumbnail) {
+        firstThumbnail.classList.add('border-primary');
+    }
+});
+</script>
+
+<style>
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.thumbnail-image:hover {
+    opacity: 0.8;
+}
+
+.thumbnail-image.border-primary {
+    border: 2px solid var(--bs-primary) !important;
+}
+</style>
+
+{% endblock %}

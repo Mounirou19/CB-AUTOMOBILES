@@ -1,0 +1,209 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }} - CB Automobiles{% endblock %}
+
+{% block body %}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="py-3" style="background-color: var(--vw-gray);">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{{ path('app_home') }}" class="text-decoration-none">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Actualités</a></li>
+            <li class="breadcrumb-item active">{{ article.title }}</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Article Hero -->
+<section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav class="mb-3">
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-arrow-left me-2"></i>Retour aux actualités
+                    </a>
+                </nav>
+                <h1 class="display-5 fw-bold mb-3">{{ article.title }}</h1>
+                <p class="text-muted mb-4">
+                    <i class="fas fa-calendar me-2"></i>{{ article.date|date('d F Y') }}
+                    <span class="mx-3">|</span>
+                    <i class="fas fa-user me-2"></i>Par l'équipe CB Automobiles
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Article Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <article>
+                    <!-- Featured Image -->
+                    <div class="mb-5">
+                        <img src="{{ article.image }}" class="img-fluid rounded shadow" alt="{{ article.title }}">
+                    </div>
+
+                    <!-- Article Content -->
+                    <div class="article-content">
+                        <p class="lead">{{ article.content }}</p>
+                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+                        <h3 class="section-title mt-5 mb-3">Innovation technologique</h3>
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+                        <!-- Article Image -->
+                        <div class="row my-5">
+                            <div class="col-md-6">
+                                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     class="img-fluid rounded shadow-sm" alt="Intérieur véhicule">
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center">
+                                <div>
+                                    <h4>Confort et ergonomie</h4>
+                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+
+                        <blockquote class="blockquote text-center my-5 p-4 bg-light rounded">
+                            <p class="mb-0">"L'innovation chez Volkswagen, c'est allier performance et respect de l'environnement pour créer la mobilité de demain."</p>
+                            <footer class="blockquote-footer mt-3">Équipe technique <cite title="CB Automobiles">CB Automobiles</cite></footer>
+                        </blockquote>
+
+                        <h3 class="section-title mb-3">Vers l'avenir</h3>
+                        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+
+                        <!-- Social Share -->
+                        <div class="border-top pt-4 mt-5">
+                            <h5 class="mb-3">Partager cet article</h5>
+                            <div class="d-flex gap-3">
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="fab fa-facebook-f me-2"></i>Facebook
+                                </a>
+                                <a href="#" class="btn btn-outline-info">
+                                    <i class="fab fa-twitter me-2"></i>Twitter
+                                </a>
+                                <a href="#" class="btn btn-outline-primary">
+                                    <i class="fab fa-linkedin-in me-2"></i>LinkedIn
+                                </a>
+                                <a href="#" class="btn btn-outline-secondary">
+                                    <i fas fa-share me-2"></i>Partager
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="position-sticky" style="top: 2rem;">
+                    
+                    <!-- Related Articles -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Articles connexes</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for id, related in articles %}
+                                {% if id != app.request.attributes.get('id') %}
+                                <div class="d-flex mb-3 pb-3 border-bottom">
+                                    <img src="{{ related.image }}" class="rounded me-3" style="width: 80px; height: 60px; object-fit: cover;" alt="{{ related.title }}">
+                                    <div>
+                                        <h6 class="mb-1">
+                                            <a href="{{ path('app_article', {id: id}) }}" class="text-decoration-none">{{ related.title }}</a>
+                                        </h6>
+                                        <small class="text-muted">{{ related.date|date('d/m/Y') }}</small>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+                            <h5>Newsletter</h5>
+                            <p class="text-muted">Recevez nos dernières actualités et offres exclusives</p>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Votre email">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">S'abonner</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- More Articles Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">Les actualités</h2>
+                <p class="text-muted">Découvrez nos derniers articles</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1562141961-aeec36ca9c39?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Article">
+                    <div class="card-body">
+                        <h6 class="card-title">Un article</h6>
+                        <p class="card-text text-muted small">Lorem ipsum dolor sit amet consectetur...</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Lire plus</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Article">
+                    <div class="card-body">
+                        <h6 class="card-title">Un article</h6>
+                        <p class="card-text text-muted small">Lorem ipsum dolor sit amet consectetur...</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Lire plus</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Article">
+                    <div class="card-body">
+                        <h6 class="card-title">Un article</h6>
+                        <p class="card-text text-muted small">Lorem ipsum dolor sit amet consectetur...</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Lire plus</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Article">
+                    <div class="card-body">
+                        <h6 class="card-title">Un article</h6>
+                        <p class="card-text text-muted small">Lorem ipsum dolor sit amet consectetur...</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Lire plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="#" class="btn btn-primary">Lire page actualité <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
