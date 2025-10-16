@@ -12,8 +12,8 @@
                 <h1 class="display-4 fw-bold mb-4">Découvrez l'excellence Volkswagen</h1>
                 <p class="lead mb-4">Explorez notre gamme complète de véhicules alliant innovation, qualité et performance. Trouvez la voiture qui vous correspond.</p>
                 <div class="d-flex gap-3">
-                    <a href="#vehicules" class="btn btn-vw-primary btn-lg">Voir nos véhicules</a>
-                    <a href="#contact" class="btn btn-outline-light btn-lg">Nous contacter</a>
+                    <a href="{{ path('app_occasion') }}" class="btn btn-vw-primary btn-lg">Voir nos véhicules</a>
+                    <a href="{{ path('app_qui_sommes_nous') }}" class="btn btn-outline-light btn-lg">Nous contacter</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center">
@@ -42,8 +42,8 @@
                         <h5 class="card-title">Golf 8</h5>
                         <p class="card-text">La référence des compactes. Technologie avancée, confort optimal et performances exceptionnelles.</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="text-primary fw-bold">À partir de 28 900 €</span>
-                            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                            <span class="text-primary fw-bold">À partir de 45 900 €</span>
+                            <a href="{{ path('app_produit', {id: 1}) }}" class="btn btn-outline-primary">En savoir plus</a>
                         </div>
                     </div>
                 </div>
@@ -56,8 +56,8 @@
                         <h5 class="card-title">Tiguan</h5>
                         <p class="card-text">SUV familial par excellence. Espace, polyvalence et sécurité pour toutes vos aventures.</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="text-primary fw-bold">À partir de 35 400 €</span>
-                            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                            <span class="text-primary fw-bold">À partir de 32 400 €</span>
+                            <a href="{{ path('app_produit', {id: 1}) }}" class="btn btn-outline-primary">En savoir plus</a>
                         </div>
                     </div>
                 </div>
@@ -70,15 +70,15 @@
                         <h5 class="card-title">ID.4</h5>
                         <p class="card-text">L'avenir de la mobilité électrique. Autonomie exceptionnelle et conduite silencieuse.</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="text-primary fw-bold">À partir de 45 900 €</span>
-                            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                            <span class="text-primary fw-bold">À partir de 35 400 €</span>
+                            <a href="{{ path('app_produit', {id: 1}) }}" class="btn btn-outline-primary">En savoir plus</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-center mt-4">
-            <a href="#" class="btn btn-vw-primary btn-lg">Voir tous nos véhicules</a>
+            <a href="{{ path('app_occasion') }}" class="btn btn-vw-primary btn-lg">Voir tous nos véhicules</a>
         </div>
     </div>
 </section>

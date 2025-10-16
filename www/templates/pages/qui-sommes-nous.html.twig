@@ -322,40 +322,48 @@
                     <!-- Contact Info -->
                     <div class="row mt-4 g-3">
                         <div class="col-md-6">
-                            <div class="d-flex">
-                                <i class="fas fa-users text-primary me-2"></i>
-                                <div>
-                                    <div class="fw-bold small">Accueil</div>
-                                    <div class="text-muted small">Qui sommes-nous ?</div>
+                            <a href="{{ path('app_home') }}" class="text-decoration-none">
+                                <div class="d-flex">
+                                    <i class="fas fa-users text-primary me-2"></i>
+                                    <div>
+                                        <div class="fw-bold small text-dark">Accueil</div>
+                                        <div class="text-muted small">Retour à l'accueil</div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-md-6">
-                            <div class="d-flex">
-                                <i class="fas fa-envelope text-primary me-2"></i>
-                                <div>
-                                    <div class="fw-bold small">Contact</div>
-                                    <div class="text-muted small">Nous contacter</div>
+                            <a href="mailto:contact@volkswagen-occasion.fr" class="text-decoration-none">
+                                <div class="d-flex">
+                                    <i class="fas fa-envelope text-primary me-2"></i>
+                                    <div>
+                                        <div class="fw-bold small text-dark">Contact</div>
+                                        <div class="text-muted small">contact@volkswagen-occasion.fr</div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-md-6">
-                            <div class="d-flex">
-                                <i class="fas fa-newspaper text-primary me-2"></i>
-                                <div>
-                                    <div class="fw-bold small">Actualités</div>
-                                    <div class="text-muted small">Dernières nouvelles</div>
+                            <a href="{{ path('app_article', {id: 1}) }}" class="text-decoration-none">
+                                <div class="d-flex">
+                                    <i class="fas fa-newspaper text-primary me-2"></i>
+                                    <div>
+                                        <div class="fw-bold small text-dark">Actualités</div>
+                                        <div class="text-muted small">Nos derniers articles</div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-md-6">
-                            <div class="d-flex">
-                                <i class="fas fa-gavel text-primary me-2"></i>
-                                <div>
-                                    <div class="fw-bold small">Mentions légales</div>
-                                    <div class="text-muted small">Conditions générales d'utilisation</div>
+                            <a href="{{ path('app_occasion') }}" class="text-decoration-none">
+                                <div class="d-flex">
+                                    <i class="fas fa-car text-primary me-2"></i>
+                                    <div>
+                                        <div class="fw-bold small text-dark">Nos véhicules</div>
+                                        <div class="text-muted small">Découvrez nos occasions</div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -21,8 +21,8 @@
         <div class="row align-items-center">
             <div class="col-lg-8">
                 <nav class="mb-3">
-                    <a href="#" class="btn btn-outline-primary btn-sm">
-                        <i class="fas fa-arrow-left me-2"></i>Retour aux actualités
+                    <a href="{{ path('app_home') }}" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-arrow-left me-2"></i>Retour à l'accueil
                     </a>
                 </nav>
                 <h1 class="display-5 fw-bold mb-3">{{ article.title }}</h1>
@@ -201,7 +201,7 @@
             </div>
         </div>
         <div class="text-center mt-4">
-            <a href="#" class="btn btn-primary">Lire page actualité <i class="fas fa-arrow-right ms-2"></i></a>
+            <a href="{{ path('app_home') }}" class="btn btn-primary">Retour à l'accueil <i class="fas fa-arrow-right ms-2"></i></a>
         </div>
     </div>
 </section>

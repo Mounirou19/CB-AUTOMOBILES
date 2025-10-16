@@ -1,0 +1,33 @@
+# Docker data
+data/
+logs/
+
+# Node modules
+node_modules/
+npm-debug.log*
+
+# Compiled assets
+public/css/app.compiled.css
+public/css/app.compiled.css.map
+
+# Environment files
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Symfony cache and logs
+var/cache/
+var/log/
+var/sessions/
+
+# Composer
+vendor/
