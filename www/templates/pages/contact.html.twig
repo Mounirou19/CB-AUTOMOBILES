@@ -1,0 +1,308 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact - CB Automobiles{% endblock %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact CB Automobiles - Nous contacter | Concession automobile{% endblock %}
+{% block meta_description %}Contactez votre concessionnaire CB Automobiles : devis, rendez-vous, informations. Horaires, adresse, téléphone. Notre équipe vous accompagne dans votre projet auto.{% endblock %}
+{% block meta_keywords %}contact cb automobiles, devis auto, rendez-vous entretien, concessionnaire adresse, horaires ouverture, téléphone concession{% endblock %}
+
+{% block body %}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="py-3" style="background-color: var(--vw-gray);">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{{ path('app_home') }}" class="text-decoration-none">Accueil</a></li>
+            <li class="breadcrumb-item active">Contact</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Hero Section Contact -->
+<section class="py-5" style="background: linear-gradient(135deg, rgba(0,60,113,0.9) 0%, rgba(30,90,168,0.8) 100%), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center;">
+    <div class="container">
+        <div class="row align-items-center text-white">
+            <div class="col-lg-8 col-md-10">
+                <h1 class="display-4 fw-bold mb-4">Contactez CB Automobiles</h1>
+                <p class="lead mb-4">Notre équipe est à votre disposition pour répondre à toutes vos questions</p>
+                <p class="mb-4">Que ce soit pour un renseignement, un devis ou un service, nous vous accueillons dans les meilleures conditions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4">Envoyez-nous un message</h3>
+                        
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label">Prénom *</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label">Nom *</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Téléphone</label>
+                                    <input type="tel" class="form-control" id="phone">
+                                </div>
+                                <div class="col-12">
+                                    <label for="subject" class="form-label">Sujet *</label>
+                                    <select class="form-select" id="subject" required>
+                                        <option value="">Choisissez un sujet</option>
+                                        <option value="achat">Achat véhicule</option>
+                                        <option value="occasion">Véhicule d'occasion</option>
+                                        <option value="service">Service après-vente</option>
+                                        <option value="financement">Financement</option>
+                                        <option value="assurance">Assurance</option>
+                                        <option value="autre">Autre demande</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Message *</label>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="Décrivez votre demande..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="consent" required>
+                                        <label class="form-check-label" for="consent">
+                                            J'accepte d'être contacté par CB Automobiles concernant ma demande *
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i>Envoyer le message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h4 class="mb-4">Informations de contact</h4>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Adresse</h6>
+                                    <p class="text-muted mb-0">{{ contact_info.address }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Téléphone</h6>
+                                    <p class="text-muted mb-0">
+                                        <a href="tel:{{ contact_info.phone }}" class="text-decoration-none">{{ contact_info.phone }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Email</h6>
+                                    <p class="text-muted mb-0">
+                                        <a href="mailto:{{ contact_info.email }}" class="text-decoration-none">{{ contact_info.email }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h4 class="mb-4">Horaires d'ouverture</h4>
+                        
+                        {% for day, hours in contact_info.hours %}
+                        <div class="d-flex justify-content-between mb-2 pb-2 {% if not loop.last %}border-bottom{% endif %}">
+                            <span class="fw-medium">{{ day }}</span>
+                            <span class="text-muted">{{ hours }}</span>
+                        </div>
+                        {% endfor %}
+                        
+                        <div class="mt-4 p-3 bg-light rounded">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-info-circle text-primary me-2"></i>
+                                <small class="text-muted">Sur rendez-vous en dehors des horaires d'ouverture</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">Nous trouver</h2>
+                <p class="lead text-muted">Venez nous rendre visite dans notre concession</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <!-- Placeholder for Google Maps -->
+                        <div class="bg-secondary d-flex align-items-center justify-content-center text-white" style="height: 400px;">
+                            <div class="text-center">
+                                <i class="fas fa-map fa-3x mb-3"></i>
+                                <h5>Carte Google Maps</h5>
+                                <p>{{ contact_info.address }}</p>
+                                <a href="https://maps.google.com/?q={{ contact_info.address|url_encode }}" target="_blank" class="btn btn-light">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ouvrir dans Google Maps
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Actions -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">Actions rapides</h2>
+                <p class="lead text-muted">Accédez rapidement à nos services</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-car fa-3x text-primary mb-3"></i>
+                        <h5>Voir nos occasions</h5>
+                        <p class="text-muted mb-3">Découvrez notre sélection de véhicules d'occasion</p>
+                        <a href="{{ path('app_occasion') }}" class="btn btn-outline-primary">Découvrir</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-tools fa-3x text-primary mb-3"></i>
+                        <h5>Prendre RDV</h5>
+                        <p class="text-muted mb-3">Planifiez votre rendez-vous pour l'entretien</p>
+                        <a href="{{ path('app_services') }}" class="btn btn-outline-primary">Planifier</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-calculator fa-3x text-primary mb-3"></i>
+                        <h5>Simulation financement</h5>
+                        <p class="text-muted mb-3">Estimez votre financement en quelques clics</p>
+                        <a href="{{ path('app_services') }}" class="btn btn-outline-primary">Simuler</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <i class="fas fa-euro-sign fa-3x text-primary mb-3"></i>
+                        <h5>Estimer reprise</h5>
+                        <p class="text-muted mb-3">Obtenez une estimation de votre véhicule</p>
+                        <a href="{{ path('app_services') }}" class="btn btn-outline-primary">Estimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Basic form validation
+    const requiredFields = ['firstName', 'lastName', 'email', 'subject', 'message'];
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+        const element = document.getElementById(field);
+        if (!element.value.trim()) {
+            element.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            element.classList.remove('is-invalid');
+        }
+    });
+    
+    const consent = document.getElementById('consent');
+    if (!consent.checked) {
+        consent.classList.add('is-invalid');
+        isValid = false;
+    } else {
+        consent.classList.remove('is-invalid');
+    }
+    
+    if (isValid) {
+        // Simulate form submission
+        const submitBtn = document.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Envoi en cours...';
+        submitBtn.disabled = true;
+        
+        setTimeout(() => {
+            alert('Message envoyé avec succès ! Nous vous recontacterons dans les plus brefs délais.');
+            document.getElementById('contactForm').reset();
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, 2000);
+    }
+});
+</script>
+{% endblock %}

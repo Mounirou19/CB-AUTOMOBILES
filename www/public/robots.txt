@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: /sitemap.xml
+
+# Disallow certain paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_profiler/
+Disallow: /_wdt/
+
+# Allow specific files
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/

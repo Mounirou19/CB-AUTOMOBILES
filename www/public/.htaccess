@@ -1,1 +1,129 @@
+# .htaccess pour optimisation SEO et performance - CB Automobiles
+
+# ============================================================================
+# COMPRESSION GZIP
+# ============================================================================
+
+# Activer la compression pour les types de fichiers communs
+<IfModule mod_deflate.c>
+    # Compresser les fichiers HTML, CSS, JavaScript, XML, JSON
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/atom+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/ld+json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/truetype
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/font-woff
+    AddOutputFilterByType DEFLATE application/font-woff2
+
+    # Forcer la compression pour les navigateurs défaillants
+    <IfModule mod_setenvif.c>
+        BrowserMatch ^Mozilla/4 gzip-only-text/html
+        BrowserMatch ^Mozilla/4\.0[678] no-gzip
+        BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    </IfModule>
+</IfModule>
+
+# ============================================================================
+# MISE EN CACHE NAVIGATEUR
+# ============================================================================
+
+<IfModule mod_expires.c>
+    # Activer l'expiration
+    ExpiresActive On
+    
+    # Cache par défaut
+    ExpiresDefault "access plus 1 month"
+    
+    # HTML (courte durée pour contenus dynamiques)
+    ExpiresByType text/html "access plus 1 day"
+    ExpiresByType text/plain "access plus 1 day"
+    
+    # CSS et JavaScript
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # Polices
+    ExpiresByType font/truetype "access plus 1 year"
+    ExpiresByType font/opentype "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # Documents et médias
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType video/mp4 "access plus 1 month"
+    ExpiresByType audio/mpeg "access plus 1 month"
+    
+    # Fichiers XML et JSON
+    ExpiresByType application/xml "access plus 1 day"
+    ExpiresByType application/json "access plus 1 day"
+    ExpiresByType text/xml "access plus 1 day"
+</IfModule>
+
+# Cache-Control headers (alternative/complément)
+<IfModule mod_headers.c>
+    # CSS et JS - Cache long terme
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # Images - Cache long terme
+    <FilesMatch "\.(jpg|jpeg|png|gif|svg|webp|ico)$">
+        Header set Cache-Control "public, max-age=31536000"
+    </FilesMatch>
+    
+    # Polices - Cache long terme
+    <FilesMatch "\.(woff|woff2|ttf|otf|eot)$">
+        Header set Cache-Control "public, max-age=31536000"
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+    
+    # HTML - Cache court terme
+    <FilesMatch "\.(html|htm|php)$">
+        Header set Cache-Control "public, max-age=86400"
+    </FilesMatch>
+    
+    # Retirer les en-têtes indésirables
+    Header unset ETag
+    Header unset Server
+</IfModule>
+
+# ============================================================================
+# SÉCURITÉ ET PERFORMANCES
+# ============================================================================
+
+# Enlever les ETags pour de meilleures performances
+FileETag None
+
+# Empêcher l'affichage des répertoires
+Options -Indexes
+
+# ============================================================================
+# SYMFONY ROUTING
+# ============================================================================
+
+# Fallback vers index.php pour Symfony
 FallbackResource /index.php

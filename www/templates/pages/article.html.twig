@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ article.title }} - CB Automobiles{% endblock %}
+{% block meta_description %}{{ article.excerpt|default('Découvrez nos actualités automobiles, conseils et nouveautés. Restez informé avec CB Automobiles, votre concessionnaire de confiance.')|striptags|slice(0, 155) }}{% endblock %}
+{% block meta_keywords %}actualité auto, conseil auto, nouveauté auto, blog automobile, CB automobiles{% endblock %}
 
 {% block body %}
 
@@ -161,40 +163,40 @@
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="card border-0 shadow-sm h-100">
-                    <img src="https://images.unsplash.com/photo-1562141961-aeec36ca9c39?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Article">
+                    <img src="https://images.unsplash.com/photo-1562141961-aeec36ca9c39?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Véhicules d'occasion Volkswagen en concession" loading="lazy">
                     <div class="card-body">
-                        <h6 class="card-title">Un article</h6>
-                        <p class="card-text text-muted small">Lorem ipsum dolor sit amet consectetur...</p>
+                        <h6 class="card-title">Guide d'achat occasion</h6>
+                        <p class="card-text text-muted small">Conseils d'experts pour choisir votre véhicule d'occasion...</p>
                         <a href="#" class="btn btn-outline-primary btn-sm">Lire plus</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="card border-0 shadow-sm h-100">
-                    <img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Article">
+                    <img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Entretien moteur Volkswagen par mécanicien expert" loading="lazy">
                     <div class="card-body">
-                        <h6 class="card-title">Un article</h6>
-                        <p class="card-text text-muted small">Lorem ipsum dolor sit amet consectetur...</p>
+                        <h6 class="card-title">Entretien préventif</h6>
+                        <p class="card-text text-muted small">L'importance de l'entretien régulier pour votre Volkswagen...</p>
                         <a href="#" class="btn btn-outline-primary btn-sm">Lire plus</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="card border-0 shadow-sm h-100">
-                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Article">
+                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Poignée de main accord financement automobile" loading="lazy">
                     <div class="card-body">
-                        <h6 class="card-title">Un article</h6>
-                        <p class="card-text text-muted small">Lorem ipsum dolor sit amet consectetur...</p>
+                        <h6 class="card-title">Solutions de financement</h6>
+                        <p class="card-text text-muted small">Découvrez nos offres de crédit et leasing adaptées...</p>
                         <a href="#" class="btn btn-outline-primary btn-sm">Lire plus</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="card border-0 shadow-sm h-100">
-                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Article">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Showroom Volkswagen moderne avec véhicules exposés" loading="lazy">
                     <div class="card-body">
-                        <h6 class="card-title">Un article</h6>
-                        <p class="card-text text-muted small">Lorem ipsum dolor sit amet consectetur...</p>
+                        <h6 class="card-title">Nouveautés 2025</h6>
+                        <p class="card-text text-muted small">Les dernières innovations Volkswagen arrivent...</p>
                         <a href="#" class="btn btn-outline-primary btn-sm">Lire plus</a>
                     </div>
                 </div>

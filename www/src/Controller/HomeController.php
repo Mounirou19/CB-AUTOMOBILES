@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class HomeController extends AbstractController
 {
@@ -156,5 +157,121 @@ final class HomeController extends AbstractController
             'team' => $team,
             'brands' => $brands
         ]);
+    }
+
+    #[Route('/services', name: 'app_services')]
+    public function services(): Response
+    {
+        $services = [
+            [
+                'title' => 'Entretien & Réparation',
+                'icon' => 'fas fa-tools',
+                'description' => 'Service après-vente complet avec techniciens certifiés Volkswagen',
+                'features' => [
+                    'Révisions périodiques',
+                    'Diagnostic électronique',
+                    'Réparations toutes marques',
+                    'Pièces d\'origine Volkswagen',
+                    'Garantie constructeur'
+                ],
+                'price_from' => '89€'
+            ],
+            [
+                'title' => 'Financement',
+                'icon' => 'fas fa-euro-sign',
+                'description' => 'Solutions de financement adaptées à votre budget',
+                'features' => [
+                    'Crédit auto à taux préférentiel',
+                    'Leasing (LOA/LLD)',
+                    'Reprise de votre ancien véhicule',
+                    'Simulation en ligne',
+                    'Réponse immédiate'
+                ],
+                'price_from' => '1.9%'
+            ],
+            [
+                'title' => 'Assurance',
+                'icon' => 'fas fa-shield-alt',
+                'description' => 'Protection complète pour votre véhicule',
+                'features' => [
+                    'Assurance tous risques',
+                    'Garantie panne mécanique',
+                    'Assistance 24h/24',
+                    'Véhicule de remplacement',
+                    'Protection juridique'
+                ],
+                'price_from' => '19€/mois'
+            ],
+            [
+                'title' => 'Vente & Reprise',
+                'icon' => 'fas fa-handshake',
+                'description' => 'Estimation gratuite et reprise au meilleur prix',
+                'features' => [
+                    'Estimation en ligne gratuite',
+                    'Expertise sur rendez-vous',
+                    'Reprise immediate',
+                    'Formalités simplifiées',
+                    'Prix garanti 15 jours'
+                ],
+                'price_from' => 'Gratuit'
+            ]
+        ];
+
+        return $this->render('pages/services.html.twig', [
+            'services' => $services
+        ]);
+    }
+
+    #[Route('/contact', name: 'app_contact')]
+    public function contact(): Response
+    {
+        $contactInfo = [
+            'phone' => '01 23 45 67 89',
+            'email' => 'contact@cb-automobiles.fr',
+            'address' => '123 Avenue des Automobiles, 75001 Paris',
+            'hours' => [
+                'Lundi - Vendredi' => '8h30 - 19h00',
+                'Samedi' => '9h00 - 18h00',
+                'Dimanche' => 'Fermé'
+            ]
+        ];
+
+        return $this->render('pages/contact.html.twig', [
+            'contactInfo' => $contactInfo,
+        ]);
+    }
+
+    #[Route('/mentions-legales', name: 'app_mentions_legales')]
+    public function mentionsLegales(): Response
+    {
+        return $this->render('pages/mentions-legales.html.twig');
+    }
+
+    #[Route('/politique-confidentialite', name: 'app_politique_confidentialite')]
+    public function politiqueConfidentialite(): Response
+    {
+        return $this->render('pages/politique-confidentialite.html.twig');
+    }
+
+    #[Route('/sitemap.xml', name: 'app_sitemap')]
+    public function sitemap(): Response
+    {
+        $urls = [
+            ['loc' => $this->generateUrl('app_home', [], UrlGeneratorInterface::ABSOLUTE_URL), 'priority' => '1.0', 'changefreq' => 'weekly'],
+            ['loc' => $this->generateUrl('app_occasion', [], UrlGeneratorInterface::ABSOLUTE_URL), 'priority' => '0.9', 'changefreq' => 'weekly'],
+            ['loc' => $this->generateUrl('app_services', [], UrlGeneratorInterface::ABSOLUTE_URL), 'priority' => '0.8', 'changefreq' => 'monthly'],
+            ['loc' => $this->generateUrl('app_contact', [], UrlGeneratorInterface::ABSOLUTE_URL), 'priority' => '0.8', 'changefreq' => 'monthly'],
+            ['loc' => $this->generateUrl('app_qui_sommes_nous', [], UrlGeneratorInterface::ABSOLUTE_URL), 'priority' => '0.7', 'changefreq' => 'monthly'],
+            ['loc' => $this->generateUrl('app_mentions_legales', [], UrlGeneratorInterface::ABSOLUTE_URL), 'priority' => '0.3', 'changefreq' => 'yearly'],
+            ['loc' => $this->generateUrl('app_politique_confidentialite', [], UrlGeneratorInterface::ABSOLUTE_URL), 'priority' => '0.3', 'changefreq' => 'yearly'],
+        ];
+
+        $response = new Response(
+            $this->renderView('sitemap.xml.twig', ['urls' => $urls]),
+            200
+        );
+        $response->headers->set('Content-Type', 'application/xml');
+        
+        return $response;
     }
 }

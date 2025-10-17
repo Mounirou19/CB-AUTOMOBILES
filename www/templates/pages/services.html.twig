@@ -1,0 +1,260 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Services - CB Automobiles{% endblock %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Services CB Automobiles - Entretien, Financement, Assurance | Notre Concession{% endblock %}
+{% block meta_description %}Découvrez tous nos services CB Automobiles : entretien et réparation, financement sur mesure, assurance véhicule, reprise auto. Service client expert et qualifié.{% endblock %}
+{% block meta_keywords %}entretien auto, réparation auto, financement auto, assurance auto, reprise véhicule, service après-vente, pièces détachées{% endblock %}
+
+{% block body %}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="py-3" style="background-color: var(--vw-gray);">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{{ path('app_home') }}" class="text-decoration-none">Accueil</a></li>
+            <li class="breadcrumb-item active">Services</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Hero Section Services -->
+<section class="py-5" style="background: linear-gradient(135deg, rgba(0,60,113,0.9) 0%, rgba(30,90,168,0.8) 100%), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center;">
+    <div class="container">
+        <div class="row align-items-center text-white">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4">Nos Services CB Automobiles</h1>
+                <p class="lead mb-4">Un accompagnement complet pour votre véhicule</p>
+                <p class="mb-4">De l'achat à l'entretien, en passant par le financement et l'assurance, CB Automobiles vous accompagne à chaque étape de votre expérience automobile.</p>
+                <a href="#services-grid" class="btn btn-light btn-lg">Découvrir nos services</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Grid -->
+<section id="services-grid" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">Nos services professionnels</h2>
+                <p class="lead text-muted">Une expertise reconnue pour votre satisfaction</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-6 col-md-6">
+                <div class="card border-0 shadow-sm h-100 service-card">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                                <i class="{{ service.icon }} fa-lg"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="card-title mb-2">{{ service.title }}</h4>
+                                <p class="text-muted mb-3">{{ service.description }}</p>
+                            </div>
+                        </div>
+                        
+                        <ul class="list-unstyled mb-4">
+                            {% for feature in service.features %}
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>{{ feature }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="text-muted small">À partir de</span>
+                                <div class="fw-bold text-primary fs-5">{{ service.price_from }}</div>
+                            </div>
+                            <a href="{{ path('app_contact') }}" class="btn btn-outline-primary">
+                                <i class="fas fa-envelope me-2"></i>Demander un devis
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">Comment ça marche ?</h2>
+                <p class="lead text-muted">Un processus simple et transparent</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="card border-0 h-100">
+                    <div class="card-body">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <span class="fs-3 fw-bold">1</span>
+                        </div>
+                        <h5>Contact</h5>
+                        <p class="text-muted">Contactez-nous par téléphone, email ou directement en concession</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="card border-0 h-100">
+                    <div class="card-body">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <span class="fs-3 fw-bold">2</span>
+                        </div>
+                        <h5>Diagnostic</h5>
+                        <p class="text-muted">Nos experts évaluent vos besoins et vous proposent la meilleure solution</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="card border-0 h-100">
+                    <div class="card-body">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <span class="fs-3 fw-bold">3</span>
+                        </div>
+                        <h5>Devis</h5>
+                        <p class="text-muted">Vous recevez un devis détaillé et transparent, sans surprise</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="card border-0 h-100">
+                    <div class="card-body">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <span class="fs-3 fw-bold">4</span>
+                        </div>
+                        <h5>Intervention</h5>
+                        <p class="text-muted">Nous réalisons le service avec professionnalisme et dans les délais</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title">Ce que disent nos clients</h2>
+                <p class="lead text-muted">La satisfaction client au cœur de nos préoccupations</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="mb-3">"Service impeccable ! L'équipe est très professionnelle et les délais sont respectés. Je recommande vivement."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="50" height="50" alt="Photo de profil de Pierre Martin, client satisfait">
+                            <div>
+                                <h6 class="mb-0">Pierre Martin</h6>
+                                <small class="text-muted">Client depuis 2020</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="mb-3">"Excellent accompagnement pour l'achat de ma Golf. L'équipe m'a trouvé le financement idéal."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="50" height="50" alt="Photo de profil de Marie Dubois, cliente satisfaite">
+                            <div>
+                                <h6 class="mb-0">Marie Dubois</h6>
+                                <small class="text-muted">Cliente depuis 2021</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="mb-3">"Service après-vente au top ! Intervention rapide et prix transparent. Très satisfait."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="50" height="50" alt="Photo de profil de Jean Leroy, client fidèle">
+                            <div>
+                                <h6 class="mb-0">Jean Leroy</h6>
+                                <small class="text-muted">Client depuis 2019</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-vw-blue text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Besoin d'un service personnalisé ?</h3>
+                <p class="mb-0">Nos conseillers sont à votre disposition pour répondre à toutes vos questions et vous accompagner dans vos projets.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{{ path('app_contact') }}" class="btn btn-light btn-lg">
+                    <i class="fas fa-phone me-2"></i>Nous contacter
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+}
+</style>
+{% endblock %}

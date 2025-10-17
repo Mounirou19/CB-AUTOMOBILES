@@ -1,6 +1,31 @@
 // JavaScript pour le site vitrine Volkswagen
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Lazy loading des images
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src || img.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        lazyImages.forEach(img => {
+            imageObserver.observe(img);
+        });
+    } else {
+        // Fallback pour les navigateurs plus anciens
+        lazyImages.forEach(img => {
+            img.src = img.dataset.src || img.src;
+        });
+    }
+
     // Navigation sticky effect
     const navbar = document.querySelector('.navbar');
     

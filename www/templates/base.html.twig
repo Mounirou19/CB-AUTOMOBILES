@@ -3,7 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Volkswagen - Votre concessionnaire de confiance{% endblock %}</title>
+        
+        {# SEO Meta Tags #}
+        <title>{% block title %}CB Automobiles - Votre concessionnaire de confiance{% endblock %}</title>
+        <meta name="description" content="{% block meta_description %}Découvrez notre gamme CB Automobiles complète : véhicules neufs et d'occasion, entretien, financement. Votre concessionnaire CB Automobiles de confiance.{% endblock %}">
+        <meta name="keywords" content="{% block meta_keywords %}cb automobiles, concessionnaire auto, voiture neuve, occasion, entretien, financement, assurance, reprise{% endblock %}">
+        <meta name="author" content="CB Automobiles Concessionnaire">
+        <meta name="robots" content="index, follow">
+        
+        {# Open Graph Meta Tags #}
+        <meta property="og:title" content="{% block og_title %}{{ block('title') }}{% endblock %}">
+        <meta property="og:description" content="{% block og_description %}{{ block('meta_description') }}{% endblock %}">
+        <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+        <meta property="og:url" content="{% block og_url %}{{ app.request.uri }}{% endblock %}">
+        <meta property="og:image" content="{% block og_image %}{{ asset('images/volkswagen-logo.png') }}{% endblock %}">
+        <meta property="og:site_name" content="CB Automobiles Concessionnaire">
+        <meta property="og:locale" content="fr_FR">
+        
+        {# Twitter Card Meta Tags #}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ block('og_title') }}">
+        <meta name="twitter:description" content="{{ block('og_description') }}">
+        <meta name="twitter:image" content="{{ block('og_image') }}">
+        
+        {# Canonical URL #}
+        <link rel="canonical" href="{% block canonical_url %}{{ app.request.uri }}{% endblock %}">
+        
+        {# Favicon #}
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🚗</text></svg>">
         
         <!-- Font Awesome -->
@@ -14,6 +40,108 @@
         <link href="{{ asset('css/volkswagen.css') }}" rel="stylesheet">
         
         {% block stylesheets %}{% endblock %}
+
+        {# Structured Data JSON-LD #}
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "AutoDealer",
+            "name": "CB Automobiles",
+            "alternateName": "CB Automobiles",
+            "description": "Concessionnaire automobile officiel : véhicules neufs et occasions, entretien, financement et assurance automobile à Paris.",
+            "url": "{{ app.request.schemeAndHttpHost }}",
+            "logo": "{{ app.request.schemeAndHttpHost }}{{ asset('images/volkswagen-logo.png') }}",
+            "telephone": "+33123456789",
+            "email": "contact@cb-automobiles.fr",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "123 Avenue des Automobiles",
+                "addressLocality": "Paris",
+                "postalCode": "75001",
+                "addressCountry": "FR"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 48.8566,
+                "longitude": 2.3522
+            },
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    "opens": "08:30",
+                    "closes": "19:00"
+                },
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": "Saturday",
+                    "opens": "09:00",
+                    "closes": "18:00"
+                }
+            ],
+            "priceRange": "€€€",
+            "acceptedPaymentMethod": ["Cash", "CreditCard", "BankTransfer"],
+            "currenciesAccepted": "EUR",
+            "paymentAccepted": ["Espèces", "Carte bancaire", "Virement", "Financement"],
+            "areaServed": {
+                "@type": "City",
+                "name": "Paris"
+            },
+            "brand": {
+                "@type": "Brand",
+                "name": "CB Automobiles"
+            },
+            "makesOffer": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Car",
+                        "brand": "CB Automobiles"
+                    },
+                    "availability": "InStock"
+                }
+            ],
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Véhicules CB Automobiles",
+                "itemListElement": [
+                    {
+                        "@type": "Car",
+                        "name": "CB Golf",
+                        "brand": "CB Automobiles",
+                        "model": "Golf"
+                    },
+                    {
+                        "@type": "Car",
+                        "name": "CB Polo",
+                        "brand": "CB Automobiles",
+                        "model": "Polo"
+                    },
+                    {
+                        "@type": "Car",
+                        "name": "CB Tiguan",
+                        "brand": "CB Automobiles",
+                        "model": "Tiguan"
+                    }
+                ]
+            },
+            "serviceType": [
+                "Vente véhicules neufs",
+                "Vente véhicules d'occasion",
+                "Entretien automobile",
+                "Réparation automobile",
+                "Financement automobile",
+                "Assurance automobile",
+                "Reprise véhicule"
+            ],
+            "sameAs": [
+                "https://www.facebook.com/cbautomobiles",
+                "https://www.instagram.com/cbautomobiles"
+            ]
+        }
+        </script>
+
+        {% block structured_data %}{% endblock %}
 
         <style>
             :root {
@@ -26,6 +154,75 @@
             .navbar-brand {
                 font-weight: bold;
                 font-size: 1.5rem;
+            }
+            
+            /* Lazy loading styles */
+            img[loading="lazy"] {
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+            }
+            
+            img[loading="lazy"].loaded {
+                opacity: 1;
+            }
+            
+            /* Performance optimizations */
+            img {
+                height: auto;
+                width: auto;
+                max-width: 100%;
+            }
+            
+            /* Préchargement des polices critiques */
+            @font-face {
+                font-family: 'Open Sans';
+                font-display: swap;
+            }
+            
+            /* Responsive améliorations */
+            @media (max-width: 768px) {
+                .display-4 {
+                    font-size: 2.5rem !important;
+                }
+                
+                .hero-section {
+                    min-height: 500px;
+                    text-align: center;
+                }
+                
+                .d-flex.gap-3 {
+                    gap: 1rem !important;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                
+                .card-body i.fa-3x {
+                    font-size: 2rem !important;
+                }
+                
+                .btn-lg {
+                    padding: 0.75rem 1.5rem;
+                    font-size: 1rem;
+                }
+            }
+            
+            @media (max-width: 576px) {
+                .display-4 {
+                    font-size: 2rem !important;
+                }
+                
+                .hero-section {
+                    min-height: 400px;
+                    padding: 3rem 0;
+                }
+                
+                .card-img-top {
+                    height: 180px !important;
+                }
+                
+                .navbar-brand {
+                    font-size: 1.25rem !important;
+                }
             }
             
             .hero-section {
@@ -76,7 +273,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--vw-blue);">
             <div class="container">
                 <a class="navbar-brand" href="{{ path('app_home') }}">
-                    <i class="fas fa-car me-2"></i>Volkswagen
+                    <i class="fas fa-car me-2"></i>CB Automobiles
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -124,8 +321,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 mb-4">
-                        <h5><i class="fas fa-car me-2"></i>Volkswagen</h5>
-                        <p class="text-muted">Votre concessionnaire Volkswagen de confiance. Découvrez notre gamme complète de véhicules neufs et d'occasion.</p>
+                        <h5><i class="fas fa-car me-2"></i>CB Automobiles</h5>
+                        <p class="text-muted">Votre concessionnaire automobile de confiance. Découvrez notre gamme complète de véhicules neufs et d'occasion.</p>
                         <div class="social-links">
                             <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
@@ -152,24 +349,42 @@
                         </ul>
                     </div>
                     <div class="col-lg-4 mb-4">
-                        <h6>Contact</h6>
-                        <ul class="list-unstyled text-muted">
-                            <li><i class="fas fa-map-marker-alt me-2"></i>123 Avenue des Automobiles, 75000 Paris</li>
+                        <h6>Newsletter</h6>
+                        <p class="text-muted small">Restez informé de nos offres et actualités</p>
+                        <form class="newsletter-form">
+                            <div class="input-group mb-3">
+                                <input type="email" class="form-control" placeholder="Votre email" required>
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="newsletter-consent" required>
+                                <label class="form-check-label small text-muted" for="newsletter-consent">
+                                    J'accepte de recevoir des communications commerciales et j'ai lu la 
+                                    <a href="{{ path('app_politique_confidentialite') }}" class="text-light">politique de confidentialité</a>
+                                </label>
+                            </div>
+                        </form>
+                        
+                        <h6 class="mt-4">Contact</h6>
+                        <ul class="list-unstyled text-muted small">
+                            <li><i class="fas fa-map-marker-alt me-2"></i>123 Avenue des Automobiles, 75001 Paris</li>
                             <li><i class="fas fa-phone me-2"></i>01 23 45 67 89</li>
-                            <li><i class="fas fa-envelope me-2"></i>contact@volkswagen-paris.fr</li>
-                            <li><i class="fas fa-clock me-2"></i>Lun-Ven: 8h-19h, Sam: 9h-18h</li>
+                            <li><i class="fas fa-envelope me-2"></i>contact@cb-automobiles.fr</li>
+                            <li><i class="fas fa-clock me-2"></i>Lun-Ven: 8h30-19h, Sam: 9h-18h</li>
                         </ul>
                     </div>
                 </div>
                 <hr class="my-4">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <p class="text-muted mb-0">&copy; 2024 Volkswagen Paris. Tous droits réservés.</p>
+                        <p class="text-muted mb-0">&copy; 2024 CB Automobiles Paris. Tous droits réservés.</p>
                     </div>
                     <div class="col-md-6 text-md-end">
-                        <a href="#" class="text-muted text-decoration-none me-3">Mentions légales</a>
-                        <a href="#" class="text-muted text-decoration-none me-3">Confidentialité</a>
-                        <a href="#" class="text-muted text-decoration-none">CGV</a>
+                        <a href="{{ path('app_mentions_legales') }}" class="text-muted text-decoration-none me-3">Mentions légales</a>
+                        <a href="{{ path('app_politique_confidentialite') }}" class="text-muted text-decoration-none me-3">Confidentialité</a>
+                        <a href="{{ path('app_contact') }}" class="text-muted text-decoration-none">Contact</a>
                     </div>
                 </div>
             </div>
